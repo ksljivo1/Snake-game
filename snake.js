@@ -12,6 +12,8 @@ class Snake {
     show() {
         var ctx = this.canvas.getContext("2d");
         ctx.fillStyle = "white";
+        const n = this.size.length - this.length;
+        this.size = this.size.slice(0, this.length);
         for(var i = 0; i < this.length; i++) {
             console.log("now;")
             ctx.fillRect(this.size[i].x, this.size[i].y, 10, 10);
@@ -91,19 +93,3 @@ class Snake {
     }
 
 }
-
-Array.prototype.insertAtIndex = function(index, element) {
-    // Check if the index is valid
-    if (index < 0 || index > this.length) {
-        console.error("Index out of bounds");
-        return;
-    }
-    
-    // Shift elements to the right to make space for the new element
-    for (let i = this.length; i > index; i--) {
-        this[i] = this[i - 1];
-    }
-    
-    // Insert the element at the specified index
-    this[index] = element;
-};
