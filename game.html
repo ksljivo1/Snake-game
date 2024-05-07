@@ -17,7 +17,10 @@
             while(true) {
                 await hamo.update();
                 food.show();
-                if(hamo.eats(food)) food = new Food();
+                if(hamo.eats(food)) {
+                    food = new Food();
+                    hamo.grow();
+                }
                 await sleep(200);
             }
         })();
