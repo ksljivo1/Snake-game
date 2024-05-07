@@ -14,21 +14,10 @@
         (async function() {
             var hamo = new Snake();
             var food = new Food();
-
-            async function generateFood() {
-                while (true) {
-                    await sleep(10000); // Wait for 10 seconds
-                    food = new Food();
-                }
-            }
-
-            // Start generating food
-            generateFood();
-            
             while(true) {
                 await hamo.update();
                 food.show();
-                if(hamo.eats(food)) food.dead();
+                if(hamo.eats(food)) food = new Food();
                 await sleep(200);
             }
         })();
@@ -36,15 +25,6 @@
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
-        /*async function newFood() {
-            console.log("10 seconds have passed!");
-            var food = new Food();
-            setTimeout(newFood, 10000); // Recursive call
-            return food;
-        }*/
-
-        // Start the first food generation after 10 seconds
-        //setTimeout(newFood, 10000);
     </script>
 </body>
 </html>

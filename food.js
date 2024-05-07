@@ -19,7 +19,7 @@ class Food {
         ctx.stroke();
     }
 
-    dead() {
+    /*dead() {
         this.alive = false;
-    }
+    }*/
 }
