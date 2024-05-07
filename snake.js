@@ -39,6 +39,15 @@ class Snake {
         return false;
     }
 
+    crossesBorder() {
+        const x = this.position.x;
+        const y = this.position.y;
+        if(x === 600) this.position.x = 0;
+        else if(y === 300) this.position.y = 0;
+        else if(x === -10) this.position.x = 600;
+        else if(y === -10) this.position.y = 300;
+    }
+
     grow() {
         this.length++;
     }
@@ -72,6 +81,7 @@ class Snake {
                 this.direction.left = 1;
             }
         });
+        this.crossesBorder();
         this.size.unshift({x: this.position.x, y: this.position.y});
         if(this.direction.right === 1) {
             this.buttonRightPressed();
