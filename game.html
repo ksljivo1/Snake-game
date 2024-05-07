@@ -21,6 +21,9 @@
                     food = new Food();
                     hamo.grow();
                 }
+                if(hamo.eatsItself()) {
+                    alert("GAME OVER");
+                }
                 await sleep(200);
             }
         })();

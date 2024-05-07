@@ -18,12 +18,25 @@ class Snake {
             console.log("now;")
             ctx.fillRect(this.size[i].x, this.size[i].y, 10, 10);
             ctx.stroke();
-            console.log(i + "jebem te " + this.size[i].x  + " " + this.size[i].y + "\n");
         }
     }
 
     eats(food) {
         return this.position.x === food.getPosition().x && this.position.y === food.getPosition().y;
+    }
+
+    eatsItself() {
+        return this.hasDuplicates();
+    }
+
+    hasDuplicates() {
+        const seen = {};
+        for (const item of this.size) {
+            const key = item.x + '|' + item.y;
+            if (seen[key]) return true;
+            seen[key] = true;
+        }
+        return false;
     }
 
     grow() {
