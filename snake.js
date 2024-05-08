@@ -7,11 +7,13 @@ class Snake {
         this.size = [];
         this.canvas = document.getElementById("canvas");
         this.direction = {right: 1, left: 0, up: 0, down: 0};
+        this.animate = false;
     }
 
     show() {
         var ctx = this.canvas.getContext("2d");
         ctx.fillStyle = "white";
+        if(this.animate) {ctx.fillStyle = "green"; this.animate = false;}
         const n = this.size.length - this.length;
         this.size = this.size.slice(0, this.length);
         for(var i = 0; i < this.length; i++) {
@@ -19,6 +21,8 @@ class Snake {
             ctx.fillRect(this.size[i].x, this.size[i].y, 10, 10);
             ctx.stroke();
         }
+        var text = document.getElementById("score");
+        text.innerHTML = "Score: " + this.length;
     }
 
     eats(food) {
@@ -50,6 +54,7 @@ class Snake {
 
     grow() {
         this.length++;
+        this.animate = true;
     }
 
     async update() {

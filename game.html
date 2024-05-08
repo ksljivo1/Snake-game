@@ -10,6 +10,7 @@
     <canvas id = "canvas" width="600" height="300"> </canvas>
     <script src = "food.js"></script>
     <script src = "snake.js"></script>
+    <h1 id = "score"></h1>
     <script>
         (async function() {
             var hamo = new Snake();
@@ -21,9 +22,7 @@
                     food = new Food();
                     hamo.grow();
                 }
-                if(hamo.eatsItself()) {
-                    alert("GAME OVER");
-                }
+                if(hamo.eatsItself()) alert("GAME OVER");
                 await sleep(200);
             }
         })();
