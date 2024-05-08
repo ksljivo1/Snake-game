@@ -12,8 +12,37 @@
     <script src = "snake.js"></script>
     <h1 id = "score"></h1>
     <script>
+        var hamo = new Snake();
+        var speed = 200;
+        var arrowKeysPressed = {
+    37: false, // Left Arrow
+    38: false, // Up Arrow
+    39: false, // Right Arrow
+    40: false  // Down Arrow
+};
+
+document.addEventListener('keydown', function(event) {
+    if (event.keyCode in arrowKeysPressed) {
+        arrowKeysPressed[event.keyCode] = true;
+    }
+});
+
+document.addEventListener('keyup', function(event) {
+    if (event.keyCode in arrowKeysPressed) {
+        arrowKeysPressed[event.keyCode] = false;
+    }
+});
+
+setInterval(function() {
+    speed = 75;
+    if (arrowKeysPressed[37]) hamo.changeDirection("left");
+    else if (arrowKeysPressed[38]) hamo.changeDirection("up");
+    else if (arrowKeysPressed[39]) hamo.changeDirection("right");
+    else if (arrowKeysPressed[40]) hamo.changeDirection("down");
+    else speed = 200;
+}, 100);
+
         (async function() {
-            var hamo = new Snake();
             var food = new Food();
             while(true) {
                 await hamo.update();
@@ -23,7 +52,7 @@
                     hamo.grow();
                 }
                 if(hamo.eatsItself()) alert("GAME OVER");
-                await sleep(200);
+                await sleep(speed);
             }
         })();
 

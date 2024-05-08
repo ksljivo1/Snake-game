@@ -52,6 +52,34 @@ class Snake {
         else if(y === -10) this.position.y = 300;
     }
 
+    changeDirection(dir) {
+        if(dir == "up") {
+            this.direction.up = 1;
+            this.direction.down = 0;
+            this.direction.right = 0;
+            this.direction.left = 0;
+        }
+
+        else if(dir == "down") {
+            this.direction.up = 0;
+            this.direction.down = 1;
+            this.direction.right = 0;
+            this.direction.left = 0;
+        }
+        else if(dir == "right") {
+            this.direction.up = 0;
+            this.direction.down = 0;
+            this.direction.right = 1;
+            this.direction.left = 0;
+        }
+        else if(dir == "left") {
+            this.direction.up = 0;
+            this.direction.down = 0;
+            this.direction.right = 0;
+            this.direction.left = 1;
+        }
+    }
+
     grow() {
         this.length++;
         this.animate = true;
