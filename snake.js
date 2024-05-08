@@ -53,26 +53,26 @@ class Snake {
     }
 
     changeDirection(dir) {
-        if(dir == "up") {
+        if(dir == "ArrowUp") {
             this.direction.up = 1;
             this.direction.down = 0;
             this.direction.right = 0;
             this.direction.left = 0;
         }
 
-        else if(dir == "down") {
+        else if(dir == "ArrowDown") {
             this.direction.up = 0;
             this.direction.down = 1;
             this.direction.right = 0;
             this.direction.left = 0;
         }
-        else if(dir == "right") {
+        else if(dir == "ArrowRight") {
             this.direction.up = 0;
             this.direction.down = 0;
             this.direction.right = 1;
             this.direction.left = 0;
         }
-        else if(dir == "left") {
+        else if(dir == "ArrowLeft") {
             this.direction.up = 0;
             this.direction.down = 0;
             this.direction.right = 0;
@@ -89,30 +89,7 @@ class Snake {
         var ctx = this.canvas.getContext("2d");
         ctx.clearRect(0, 0, 600, 300);
         document.addEventListener('keyup', (event) => {
-            if (event.key === 'ArrowUp') {
-                this.direction.up = 1;
-                this.direction.down = 0;
-                this.direction.right = 0;
-                this.direction.left = 0;
-            }
-            else if (event.key === 'ArrowDown') {
-                this.direction.up = 0;
-                this.direction.down = 1;
-                this.direction.right = 0;
-                this.direction.left = 0;
-            }
-            else if (event.key === 'ArrowRight') {
-                this.direction.up = 0;
-                this.direction.down = 0;
-                this.direction.right = 1;
-                this.direction.left = 0;
-            }
-            else {
-                this.direction.up = 0;
-                this.direction.down = 0;
-                this.direction.right = 0;
-                this.direction.left = 1;
-            }
+            this.changeDirection(event.key); 
         });
         this.crossesBorder();
         this.size.unshift({x: this.position.x, y: this.position.y});
@@ -128,7 +105,6 @@ class Snake {
         else  {
             this.buttonDownPressed();
         }
-        //console.log(this.position);
         this.show();
     }
 

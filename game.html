@@ -35,10 +35,10 @@ document.addEventListener('keyup', function(event) {
 
 setInterval(function() {
     speed = 75;
-    if (arrowKeysPressed[37]) hamo.changeDirection("left");
-    else if (arrowKeysPressed[38]) hamo.changeDirection("up");
-    else if (arrowKeysPressed[39]) hamo.changeDirection("right");
-    else if (arrowKeysPressed[40]) hamo.changeDirection("down");
+    if (arrowKeysPressed[37]) hamo.changeDirection("ArrowLeft");
+    else if (arrowKeysPressed[38]) hamo.changeDirection("ArrowUp");
+    else if (arrowKeysPressed[39]) hamo.changeDirection("ArrowRight");
+    else if (arrowKeysPressed[40]) hamo.changeDirection("ArrowDown");
     else speed = 200;
 }, 100);
 
