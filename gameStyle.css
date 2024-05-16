@@ -1,4 +1,26 @@
 #canvas {
-    background-color: rgb(0, 0, 0);
-    border: 1px red solid;
+    background-color: black;
+    display: block;
+    margin-top: 35px;
+}
+
+.container {
+    position: relative;
+    width: 600px; 
+    margin: 0 auto; 
+}
+.horizontal-container {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    position: absolute;
+    top: 0;
+    width: 44%; 
+}
+#score {
+    margin: 0;
+}
+
+#pause:hover {
+    opacity: 0.5;
 }

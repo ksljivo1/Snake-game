@@ -7,57 +7,76 @@
     <title>Snake game</title>
 </head>
 <body>
-    <canvas id = "canvas" width="600" height="300"> </canvas>
+    <div>
+        <div class="horizontal-container">
+            <h1 id = "score"></h1>
+            <img id = "pause" src = "assets/pause.png" width="20" height="20" onclick="pauseGame()">
+        </div>
+        <canvas id = "canvas" width="600" height="300"> </canvas>
+    </div>
     <script src = "food.js"></script>
     <script src = "snake.js"></script>
-    <h1 id = "score"></h1>
     <script>
+        let pause = false;
         var hamo = new Snake();
         var speed = 200;
         var arrowKeysPressed = {
-    37: false, // Left Arrow
-    38: false, // Up Arrow
-    39: false, // Right Arrow
-    40: false  // Down Arrow
-};
+            37: false, // Left Arrow
+            38: false, // Up Arrow
+            39: false, // Right Arrow
+            40: false  // Down Arrow
+        };
 
-document.addEventListener('keydown', function(event) {
-    if (event.keyCode in arrowKeysPressed) {
-        arrowKeysPressed[event.keyCode] = true;
-    }
-});
+        document.addEventListener('keydown', function(event) {
+            if (event.keyCode in arrowKeysPressed) {
+                arrowKeysPressed[event.keyCode] = true;
+            }
+        });
 
-document.addEventListener('keyup', function(event) {
-    if (event.keyCode in arrowKeysPressed) {
-        arrowKeysPressed[event.keyCode] = false;
-    }
-});
+        document.addEventListener('keyup', function(event) {
+            if (event.keyCode in arrowKeysPressed) {
+                arrowKeysPressed[event.keyCode] = false;
+            }
+        });
 
-setInterval(function() {
-    speed = 75;
-    if (arrowKeysPressed[37]) hamo.changeDirection("ArrowLeft");
-    else if (arrowKeysPressed[38]) hamo.changeDirection("ArrowUp");
-    else if (arrowKeysPressed[39]) hamo.changeDirection("ArrowRight");
-    else if (arrowKeysPressed[40]) hamo.changeDirection("ArrowDown");
-    else speed = 200;
-}, 100);
+        setInterval(function() {
+            speed = 75;
+            if (arrowKeysPressed[37]) hamo.changeDirection("ArrowLeft");
+            else if (arrowKeysPressed[38]) hamo.changeDirection("ArrowUp");
+            else if (arrowKeysPressed[39]) hamo.changeDirection("ArrowRight");
+            else if (arrowKeysPressed[40]) hamo.changeDirection("ArrowDown");
+            else speed = 200;
+        }, 100);
 
         (async function() {
             var food = new Food();
             while(true) {
-                await hamo.update();
-                food.show();
-                if(hamo.eats(food)) {
-                    food = new Food();
-                    hamo.grow();
+                if(pause) ;
+                else {
+                    await hamo.update();
+                    food.show();
+                    if(hamo.eats(food)) {
+                        food = new Food();
+                        hamo.grow();
+                    }
+                    if(hamo.eatsItself()) alert("GAME OVER");
                 }
-                if(hamo.eatsItself()) alert("GAME OVER");
                 await sleep(speed);
             }
         })();
 
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function pauseGame() {
+            pause = !pause; 
+            const pauseIcon = document.getElementById('pause');
+            if (pauseIcon.src.includes('pause.png')) {
+                pauseIcon.src = 'assets/continue.png'; // Change to the new image source
+            } else {
+                pauseIcon.src = 'assets/pause.png'; // Change back to the original image source
+            }
         }
     </script>
 </body>
