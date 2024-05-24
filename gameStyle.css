@@ -15,7 +15,6 @@ body {
     margin-top: 35px;
 }
 
-
 .horizontal-container {
     display: flex;
     justify-content: space-between;
@@ -23,12 +22,8 @@ body {
     position: absolute;
     top: 0;
     width: 44%; 
-            margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 #score {
     margin: 0;
-}
-
-#pause:hover {
-    opacity: 0.5;
 }
