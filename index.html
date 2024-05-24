@@ -7,7 +7,7 @@
     <title>Snake game</title>
 </head>
 <body>
-    <div>
+    <div class = "outer-container">
         <div class="horizontal-container">
             <h1 id = "score"></h1>
             <img id = "pause" src = "assets/pause.png" width="20" height="20" onclick="pauseGame()">
@@ -48,7 +48,7 @@
             else speed = 200;
         }, 100);
 
-        (async function() {
+        (async () => {
             var food = new Food();
             while(true) {
                 if(pause) ;

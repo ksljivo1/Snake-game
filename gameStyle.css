@@ -1,21 +1,29 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.outer-container {
+    text-align: center;
+}
+
 #canvas {
     background-color: black;
     display: block;
     margin-top: 35px;
 }
 
-.container {
-    position: relative;
-    width: 600px; 
-    margin: 0 auto; 
-}
+
 .horizontal-container {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     align-items: center; 
     position: absolute;
     top: 0;
     width: 44%; 
+            margin-bottom: 20px;
 }
 #score {
     margin: 0;
